@@ -24,8 +24,8 @@ const createRecord = async (req, res) => {
 
 const getRecordByUser = async (req, res) => {
     try {
-        // const userId = req.user._id;
-        const userId = "6510a9e8d45d3f63d5e7b9ab";
+        const userId = req.user._id;
+        // const userId = "6510a9e8d45d3f63d5e7b9ab";
         const records = await Record.find({ exterminatorId: userId });
         res.json(records);
     } catch (error) {

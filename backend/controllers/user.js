@@ -1,5 +1,7 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 const User = require('../models/user');
+const config=require('../config/config');
 const { validationResult } = require('express-validator');
 
 
@@ -45,7 +47,17 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        res.json({ ...user.toObject(), password: undefined });
+        const userForToken = {
+            email: user.email,
+            id: user._id,
+        }
+
+        const token = jwt.sign(userForToken, config.SECRET,{expiresIn:60*60})
+
+        res
+            .status(200)
+            .json({ token, email: user.email, name: user.name })
+            
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error logging in user' });
