@@ -1,8 +1,10 @@
+const config = require('./config/config')
 const mongoose = require('mongoose')
-const config = require('./utils/config')
 const logger = require('./utils/logger')
 
 const connectToDatabase = async () => {
+
+    console.log(config);
     try {
         logger.info('connecting to', config.MONGODB_URI)
         await mongoose.connect(config.MONGODB_URI)

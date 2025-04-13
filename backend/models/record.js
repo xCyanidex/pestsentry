@@ -38,7 +38,7 @@ const Record = new mongoose.Schema({
             "email": { "type": String, "required": false }
         }
     },
-    "exterminatorId": { "type": mongoose.Schema.Types.ObjectId, "ref": "Exterminator", "required": true },
+    "exterminatorId": { "type": mongoose.Schema.Types.ObjectId, "ref": "User", "required": true },
     "notes": { "type": String, "required": false },
     "createdAt": { "type": Date, "required": true, "default": Date.now },
     "updatedAt": { "type": Date, "required": true, "default": Date.now }
