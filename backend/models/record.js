@@ -1,47 +1,54 @@
 const mongoose = require('mongoose');
 
-const Record = new mongoose.Schema({
-    "structure": {
-        "type": { "type": String, "required": true },
-        "address": {
-            "street": { "type": String, "required": true },
-            "city": { "type": String, "required": true },
-            "state": { "type": String, "required": true },
-            "zip": { "type": String, "required": true },
-            "coordinates": {
-                "lat": { "type": Number, "required": false },
-                "lng": { "type": Number, "required": false }
+const RecordSchema = new mongoose.Schema({
+    structure: {
+        serviceType: { type: String, required: true },
+        address: {
+            street: { type: String, }, 
+            city: { type: String,  },   
+            state: { type: String,  }, 
+            postal: { type: String, }, 
+            coordinates: {
+                lat: { type: Number, required: false }, 
+                lng: { type: Number, required: false }  
             }
-        },
-        "pictures": [
-            {
-                "url": { "type": String, "required": false },
-                "caption": { "type": String, "required": false }
-            }
-        ]
-    },
-    "extermination": {
-        "date": { "type": Date, "required": true },
-        "time": { "type": String, "required": true },
-        "pesticideUsed": {
-            "name": { "type": String, "required": true },
-            "quantity": { "type": Number, "required": true },
-            "unit": { "type": String, "required": true }
-        },
-        "targetPest": { "type": String, "required": true },
-        "method": { "type": String, "required": false }
-    },
-    "exterminator": {
-        "name": { "type": String, "required": true },
-        "contactInfo": {
-            "phone": { "type": String, "required": true },
-            "email": { "type": String, "required": false }
         }
     },
-    "exterminatorId": { "type": mongoose.Schema.Types.ObjectId, "ref": "User", "required": true },
-    "notes": { "type": String, "required": false },
-    "createdAt": { "type": Date, "required": true, "default": Date.now },
-    "updatedAt": { "type": Date, "required": true, "default": Date.now }
-})
 
-module.exports = mongoose.model('Record', Record);
+    extermination: {
+        date: { type: Date, },     
+        time: { type: String, },    
+        pesticideUsed: {
+            name: { type: String, },  
+            quantity: { type: Number, },
+            unit: { type: String, }  
+        },
+        targetPest: { type: String, }, 
+        method: { type: String, required: false },
+        pictures: {
+            type: [String],
+            default: [],
+        }     
+    },
+
+    exterminator: {
+        name: { type: String},     
+        phone: { type: String }     
+    },
+
+    customer: {
+        name: { type: String,}, 
+        phone: { type: String,},    
+        email: { type: String, }     
+    },
+
+    notes: { type: String, required: false },     
+
+    
+    exterminatorId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('Record', RecordSchema);

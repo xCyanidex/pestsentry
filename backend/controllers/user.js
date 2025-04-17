@@ -47,16 +47,15 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        const userForToken = {
+        const tokenPayload = {
+            id: user._id.toString(),
             email: user.email,
-            id: user._id,
-        }
-
-        const token = jwt.sign(userForToken, config.SECRET,{expiresIn:60*60})
-
+            }
+        const token = jwt.sign(tokenPayload, config.SECRET,{expiresIn:'1h'});
+        
         res
             .status(200)
-            .json({ token, email: user.email, name: user.name })
+            .json({ token, userId: user._id.toString(), email: user.email, name: user.name })
             
     } catch (error) {
         console.error(error);
