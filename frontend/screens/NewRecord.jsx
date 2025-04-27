@@ -4,11 +4,13 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {usePostRecordsMutation} from "../slices/recordsSlice"
 import { useSelector } from "react-redux";
 
 const NewRecord = () => {
+
+  const navigate=useNavigate()
 
 const [postRecord, { isLoading, isSuccess, isError, error }] =
   usePostRecordsMutation();
@@ -87,14 +89,14 @@ const recordObject = {
   structure: {
     serviceType: serviceType,
     address: { street, city, state, postal },
-    coordinates: { lat, long },
   },
   extermination: {
     date,
     time,
-    pesticideUsed: { pesticideName, quantity, unit },
+    pesticideUsed: { name:pesticideName, quantity, unit },
     targetPest,
     method,
+    coordinates: { longitude: long, latitude:lat },
   },
   exterminator: { name: exterminatorName, phone: exterminatorPhone },
   customer: { name: customerName, phone: customerPhone, email: customerEmail },
@@ -113,6 +115,7 @@ const recordObject = {
   try {
     const res = await postRecord(formData).unwrap();
     console.log("Record added successfully:", res);
+    navigate("/records?msg=created");
   } catch (err) {
     console.error("Error creating record:", err);
   }
@@ -395,6 +398,7 @@ const recordObject = {
                 }}
               />
             </Form.Group>
+            
           </Col>
         </Row>
         <Row>
@@ -414,7 +418,7 @@ const recordObject = {
           type="submit"
           className="w-100"
         >
-          {isLoading ? <p>Submitting...</p> : "Submit Record"}
+          {isLoading ? "Submitting..." : "Submit Record"}
         </Button>
       </Form>
     </Container>

@@ -21,7 +21,11 @@ const RecordSchema = new mongoose.Schema({
         pesticideUsed: {
             name: { type: String, },  
             quantity: { type: Number, },
-            unit: { type: String, }  
+            unit: { type: String, },
+        },
+        coordinates: {
+            longitude: { type: String },
+            latitude: { type: String },
         },
         targetPest: { type: String, }, 
         method: { type: String, required: false },
@@ -46,7 +50,7 @@ const RecordSchema = new mongoose.Schema({
 
     
     exterminatorId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-
+    exterminationReport:{type:String},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
 });

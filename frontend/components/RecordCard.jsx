@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import { useGetRecordByIdQuery } from "../slices/recordsSlice";
 import { MutatingDots } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import placeHolderImage from "../src/assets/placeholder.png"
 
 const RecordCard = ({ recordId }) => {
 
@@ -49,7 +50,9 @@ const RecordCard = ({ recordId }) => {
         ) : (
           <Card.Img
             variant="top"
-            src="https://via.placeholder.com/286x180.png?text=No+Image"
+            alt="site-image"
+            className="object-fit-cover"
+            src={placeHolderImage}
           />
         )}
         <Card.Body>

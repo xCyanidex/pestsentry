@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import { useGetRecordsByUserQuery } from "../slices/recordsSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import RecordCard from "../components/RecordCard";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { MutatingDots } from "react-loader-spinner";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Records = () => {
   const { user } = useSelector((state) => state.auth);
@@ -12,9 +14,26 @@ const Records = () => {
     data: records,
     isLoading,
     error,
-  } = useGetRecordsByUserQuery(user?.userId, {
-    skip: !user?.userId,
-  });
+  } = useGetRecordsByUserQuery(
+    user?.userId,
+    {
+      skip: !user?.userId,
+      refetchOnMountOrArgChange: true,
+    },
+  );
+
+
+      const location = useLocation();
+      const queryParams = new URLSearchParams(location.search);
+      const msg = queryParams.get("msg");
+
+        useEffect(() => {
+          if (msg === "delete") {
+         toast("Record Delete Successful.");
+          }else if (msg==="created") {
+                     toast("Record Creation Successful.");
+          }
+        }, [msg]);
 
   return (
     <Container className="my-4">
@@ -56,12 +75,13 @@ const Records = () => {
           <h2>No records found</h2>
         ) : (
           records?.map((record) => (
-            <Col key={record.structure} md={4} className="mb-4">
+            <Col key={record._id} md={4} className="mb-4">
               <RecordCard recordId={record._id} />
             </Col>
           ))
         )}
       </Row>
+      <Toaster />
     </Container>
   );
 };

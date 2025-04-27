@@ -6,7 +6,6 @@ const authenticate=require('../middleware/auth');
 
 const multer = require('multer');
 
-// In-memory storage for Supabase upload
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -15,13 +14,20 @@ recordRouter.get('/:id', recordControllers.getRecordById);
 
 recordRouter.post(
     '/',
+    authenticate,
     upload.array('pictures', 3),
     // validateRecord,
-    authenticate,
     recordControllers.createRecord
 );
 
-recordRouter.put('/:id', validateRecord, recordControllers.editRecord);
-recordRouter.delete('/:id', recordControllers.deleteRecord);
+recordRouter.put('/:id', authenticate,
+    upload.array('pictures', 3),
+    // validateRecord,
+    recordControllers.editRecord
+);
+
+recordRouter.delete('/:id', authenticate,recordControllers.deleteRecord);
+
+recordRouter.get('/report/:id', authenticate,recordControllers.createRecordReport)
 
 module.exports=recordRouter;

@@ -31,11 +31,13 @@ export const recordsApiSlice = createApi({
             invalidatesTags: ["Records"],
         }),
         updateRecord: builder.mutation({
-            query: ({ id, updatedData }) => ({
+            query: ({ id, formData }) => ({
                 url: `/${id}`,
                 method: 'PUT',
-                body: updatedData,
+                body: formData,
+                formData:true,
             }),
+            invalidatesTags: ["Records"],
         }),
         deleteRecord: builder.mutation({
             query: ( id ) => ({
@@ -44,6 +46,9 @@ export const recordsApiSlice = createApi({
             }),
             invalidatesTags: ["Records"],
         }),
+        getReport: builder.query({
+            query: (recordId) => `/report/${recordId}`
+        })
     }),
 });
 
@@ -53,4 +58,5 @@ export const {
     usePostRecordsMutation,
     useUpdateRecordMutation,
     useDeleteRecordMutation,
+    useLazyGetReportQuery
 } = recordsApiSlice;
