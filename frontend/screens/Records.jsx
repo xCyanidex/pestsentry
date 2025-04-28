@@ -69,7 +69,9 @@ const Records = () => {
         )}
         {error && <p>Error fetching records</p>}
         {records && records.length === 0 ? (
-          <h2>No records found</h2>
+          <div style={{height:"65vh",display:"flex",textAlign:"center",justifyContent:"center",alignItems:"center"}}>
+            <h2>No records found</h2>
+          </div>
         ) : (
           records?.map((record) => (
             <Col key={record._id} md={4} className="mb-4">
