@@ -1,6 +1,4 @@
 PestSentry 🐛
-[
-]
 
 PestSentry is a real-world, full-stack pest management web application that leverages AI-driven automation to generate extermination reports based on user-submitted data.
 Designed to streamline pest control operations, PestSentry brings together modern web technologies with intelligent workflows for maximum efficiency.
