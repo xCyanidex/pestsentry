@@ -231,7 +231,7 @@ const createRecordReport=async (req,res)=>{
 
     const response = await ai.models.generateContent({
         model:'gemini-2.0-flash-001',
-        contents:`This is pest report generator app and following is an object containing all the data regarding the current pest extermination, I need you to generate a report regarding this extermination which should be under 10 lines, concise and to the point and it should have a structure where you first tell what was the problem and what was the observation and what seemed to be the solution and how it turned out and what did you use etc here is the record object ${record} `,
+        contents:`This is pest report generator app and following is an object containing all the data regarding the current pest extermination, I need you to generate a report regarding this extermination which should be under 10 lines, concise and to the point and it should have a structure where you first tell what was the problem and what was the observation and what seemed to be the solution and how it turned out and what did you use etc here is the record object ${record} . Include beautiful markups not ugly ones.`,
     })
     console.log(response)
     if(response){

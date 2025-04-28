@@ -1,5 +1,5 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDeleteRecordMutation, useGetRecordByIdQuery, useLazyGetReportQuery, useUpdateRecordMutation,  } from "../slices/recordsSlice";
 import { ClipLoader } from "react-spinners";
 import Carousel from "react-bootstrap/Carousel";
@@ -232,6 +232,13 @@ setConfirmDelModal(true);
         </>
       )}
       <Container className="my-4">
+        <Row>
+          <Col md={12} className="text-end">
+            <Link to={"/records"} className="btn my-4 btn-primary">
+              Go Back
+            </Link>
+          </Col>
+        </Row>
         <Row className="justify-content-center">
           <Col md={8}>
             {record?.extermination?.pictures?.length > 0 ? (
