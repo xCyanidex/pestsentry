@@ -41,47 +41,6 @@ const [postRecord, { isLoading, isSuccess, isError, error }] =
   const [files, setFiles] = useState([]);
 
 
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-
-//   const formData = new FormData();
-//   formData.append("userId", user.userId);
-//   formData.append("type", type);
-//   formData.append("street", street);
-//   formData.append("city", city);
-//   formData.append("state", state);
-//   formData.append("postal", postal);
-//   formData.append("lat", lat);
-//   formData.append("long", long);
-//   formData.append("date", date);
-//   formData.append("time", time);
-//   formData.append("pesticideName", pesticideName);
-//   formData.append("quantity", quantity);
-//   formData.append("unit", unit);
-//   formData.append("targetPest", targetPest);
-//   formData.append("method", method);
-//   formData.append("exterminatorName", exterminatorName);
-//   formData.append("exterminatorPhone", exterminatorPhone);
-//   formData.append("customerName", customerName);
-//   formData.append("customerPhone", customerPhone);
-//   formData.append("customerEmail", customerEmail);
-//   formData.append("notes", notes);
-
-//   // Add each selected file
-//   files.forEach((file) => {
-//     formData.append("pictures", file); // field name should match multer config
-//   });
-
-//   try {
-//     const res = await postRecord(formData).unwrap();
-//     console.log("Record added successfully:", res);
-//   } catch (err) {
-//     console.error("Error creating record:", err);
-//   }
-// };
-
-
 const handleSubmit = async (e) => {
   e.preventDefault();
 

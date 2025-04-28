@@ -8,7 +8,8 @@ import {recordsApiSlice} from "./slices/recordsSlice"
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: [recordsApiSlice.reducerPath]
+    blacklist: [recordsApiSlice.reducerPath],
+    whitelist: ['auth'],
 };
 
 const rootReducer = combineReducers({

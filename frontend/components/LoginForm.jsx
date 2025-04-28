@@ -17,6 +17,7 @@ const LoginForm = () => {
   const [formSubmit,setFormSubmit]=useState(false);
   const [password, setPassword] = useState("");
   const [error,setError]=useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
 
 const handleLogin = async (event) => {
@@ -34,6 +35,7 @@ const handleLogin = async (event) => {
     const user = await login({
       email,
       password,
+      rememberMe,
     });
     recordService.setToken(user.token);
     dispatch(loginSuccess({ user, token: user.token }));
@@ -65,6 +67,10 @@ const handleLogin = async (event) => {
   }
 };
 
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked); // Update rememberMe state when checkbox is clicked
+  };
+
   return (
     <>
       <Form onSubmit={handleLogin}>
@@ -72,6 +78,7 @@ const handleLogin = async (event) => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
+            autocomplete="email"
             type="email"
             placeholder="Enter email"
             value={email}
@@ -85,10 +92,22 @@ const handleLogin = async (event) => {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
+            autocomplete="current-password"
           />
         </Form.Group>
-        <Button disabled={formSubmit} variant="primary" type="submit">
-          Login
+        <Form.Check
+          checked={rememberMe}
+          onChange={handleRememberMeChange}
+          type={"checkbox"}
+          label={`Remember me.`}
+        />
+        <Button
+          disabled={formSubmit}
+          variant="primary"
+          type="submit"
+          className="my-2"
+        >
+          {formSubmit ? "Logging In..." : "Login"}
         </Button>
         <Row>
           <Col md={12} className="text-center">
