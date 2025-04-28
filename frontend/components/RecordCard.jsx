@@ -1,7 +1,6 @@
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useGetRecordByIdQuery } from "../slices/recordsSlice";
-import { MutatingDots } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import placeHolderImage from "../src/assets/placeholder.png"
 
@@ -19,16 +18,13 @@ const RecordCard = ({ recordId }) => {
           alignItems: "center",
         }}
       >
-        <MutatingDots
-          visible={true}
-          height="100"
-          width="100"
-          color="#0d6efd"
-          secondaryColor="#0d6efd"
-          radius="12.5"
-          ariaLabel="mutating-dots-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
+        <ClipLoader
+          // color={color}
+          // loading={loading}
+          // cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
         />
       </div>
     </>

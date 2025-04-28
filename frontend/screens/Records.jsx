@@ -3,7 +3,7 @@ import { useGetRecordsByUserQuery } from "../slices/recordsSlice";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import RecordCard from "../components/RecordCard";
 import { Link, useLocation } from "react-router-dom";
-import { MutatingDots } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -56,16 +56,13 @@ const Records = () => {
                 height: "100vh",
               }}
             >
-              <MutatingDots
-                visible={true}
-                height="100"
-                width="100"
-                color="#0d6efd"
-                secondaryColor="#0d6efd"
-                radius="12.5"
-                ariaLabel="mutating-dots-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
+              <ClipLoader
+                // color={color}
+                // loading={loading}
+                // cssOverride={override}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"
               />
             </div>
           </>

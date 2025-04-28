@@ -1,7 +1,7 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDeleteRecordMutation, useGetRecordByIdQuery, useLazyGetReportQuery, useUpdateRecordMutation,  } from "../slices/recordsSlice";
-import { MutatingDots } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
 import Carousel from "react-bootstrap/Carousel";
 import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -220,16 +220,13 @@ setConfirmDelModal(true);
               height: "100vh",
             }}
           >
-            <MutatingDots
-              visible={true}
-              height="100"
-              width="100"
-              color="#0d6efd"
-              secondaryColor="#0d6efd"
-              radius="12.5"
-              ariaLabel="mutating-dots-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
+            <ClipLoader
+              // color={color}
+              // loading={loading}
+              // cssOverride={override}
+              size={150}
+              aria-label="Loading Spinner"
+              data-testid="loader"
             />
           </div>
         </>
