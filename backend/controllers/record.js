@@ -13,7 +13,7 @@ const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 const supabase = createClient(
     config.SUPABASE_URL,
-    config.SUPABASE_SERVICE_ROLE_KEY // not public anon key
+    config.SUPABASE_SERVICE_ROLE_KEY 
 );
 
 const createRecord = async (req, res) => {
